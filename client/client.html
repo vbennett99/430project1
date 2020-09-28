@@ -118,18 +118,29 @@
   <section id="top">
     <h3>POST Status Code Tests</h3>
     <form id="streamerForm" action="/addStreamer" method="post">
-        
-      <label for="name">Channel or Streamer Name: </label>
-      <input id="nameField" type="text" name="name" />
+        <label for="name">Channel or Streamer Name: </label>
+        <input id="nameField" type="text" name="name" />
+
+        <br />
+
+        <label for="channelLink">Link to Channel: </label>
+        <input id="linkField" type="text" name="channelLink"
+             placeholder="https://www.twitch.tv/channelName" />
+
+        <br />
+
+        <label for="daysOfTheWeek">Days of the Week They Stream: </label>
+        <input id="dotwField" type="text" name="daysOfTheWeek"
+               placeholder="Monday, Wednesday, Friday" />
         
         <br />
         
-      <label for="channelLink">Link to Channel: </label>
-      <input id="linkField" type="text" name="channelLink"/>
-        
+        <label for="time">Time the Stream Starts: </label>
+        <input id="timeField" type="time" name="time" />
+    
         <br />
-        
-      <input type="submit" value="Add Streamer" />
+
+        <input type="submit" value="Add Streamer" />
     </form>
       
       <br /><br />
