@@ -30,7 +30,7 @@ const addStreamer = (request, response, body) => {
     message: 'All fields are required, please double check you have filled out all required information',
   };
 
-  if (!body.name || !body.channelLink) {
+  if (!body.name || !body.channelLink || !body.dotw || !body.time) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
@@ -44,6 +44,8 @@ const addStreamer = (request, response, body) => {
   }
 
   streamers[body.name].channelLink = body.channelLink;
+  streamers[body.name].dotw = body.dotw;
+  streamers[body.name].time = body.time;
 
   if (responseCode === 201) {
     responseJSON.message = 'Created Successfully!';

@@ -85,6 +85,8 @@
         
         const nameField = nameForm.querySelector('#nameField');
         const linkField = nameForm.querySelector('#linkField');
+        const dotwField = nameForm.querySelector('#dotwField');
+        const timeField = nameForm.querySelector('#timeField');
         
         const xhr = new XMLHttpRequest();
         xhr.open(nameMethod, nameAction);
@@ -94,7 +96,8 @@
         
         xhr.onload = () => handleResponse(xhr, true);
         
-        const formData = `name=${nameField.value}&channelLink=${linkField.value}`;
+        const formData = `name=${nameField.value}&channelLink=${linkField.value}
+                        &dotw=${dotwField.value}&time=${timeField.value}`;
         xhr.send(formData);
         
         return false; //Prevent bubbling
@@ -115,7 +118,7 @@
   </script>
 </head>
 <body>
-  <section id="top">
+  <section id="form">
     <h3>POST Status Code Tests</h3>
     <form id="streamerForm" action="/addStreamer" method="post">
         <label for="name">Channel or Streamer Name: </label>
@@ -129,8 +132,8 @@
 
         <br />
 
-        <label for="daysOfTheWeek">Days of the Week They Stream: </label>
-        <input id="dotwField" type="text" name="daysOfTheWeek"
+        <label for="dotw">Days of the Week They Stream: </label>
+        <input id="dotwField" type="text" name="dotw"
                placeholder="Monday, Wednesday, Friday" />
         
         <br />
@@ -142,21 +145,26 @@
 
         <input type="submit" value="Add Streamer" />
     </form>
-      
       <br /><br />
-      
     <form id="userForm" action="/getStreamers" method="get">
-      <select id='urlField'>
-        <option value='/getStreamers'>/getStreamers</option>
-        <option value='/notReal'>/notReal</option>
-      </select>
-      <select id="methodSelect">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
-      </select>
-      <input type="submit" value="Get Streamer" />
+        <select id='urlField'>
+            <option value='/getStreamers'>/getStreamers</option>
+            <option value='/notReal'>/notReal</option>
+        </select>
+        
+        <select id="methodSelect">
+            <option value="get">GET</option>
+            <option value="head">HEAD</option>
+        </select>
+        
+        <input type="submit" value="Get Streamer" />
     </form>
   </section>
+
+    <section id="display">
+        Placeholder Text
+    </section>
+    
   <section id="content">
   </section>
 </body>

@@ -5,17 +5,30 @@ html, body {
   padding: 0;
 }
 
-#top {
+#form {
   text-align: center;
   margin: 0 auto;
 }
 
-#top h1 {
+#form h1 {
   font-size: 2em;
 }
 
 #content {
-  margin-top: 100px;
+  margin-top: 20px;
   font-size: 2em;
   text-align: center;
+}
+
+#display {
+    background-color: #9147ff;  
+    height: 50px;
+    color: lightgrey;
+    text-align: center;
+    margin: 20px auto;
+    font-size: 2em;
+}
+    
+input {
+    width: 300px;
 }
