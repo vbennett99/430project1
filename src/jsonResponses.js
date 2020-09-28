@@ -2,7 +2,7 @@
 // When node shuts down this will be cleared.
 // Same when your heroku app shuts down from inactivity
 // We will be working with databases in the next few weeks.
-const users = {};
+const streamers = {};
 
 const respondJSON = (request, response, status, object) => {
   response.writeHead(status, { 'Content-Type': 'application/json' });
@@ -17,7 +17,7 @@ const respondJSONMeta = (request, response, status) => {
 
 const getUsers = (request, response) => {
   const responseJSON = {
-    users,
+    streamers,
   };
 
   respondJSON(request, response, 200, responseJSON);
@@ -25,25 +25,25 @@ const getUsers = (request, response) => {
 
 const getUsersMeta = (request, response) => respondJSONMeta(request, response, 200);
 
-const addUser = (request, response, body) => {
+const addStreamer = (request, response, body) => {
   const responseJSON = {
-    message: 'Name and age are both required',
+    message: 'All fields are required, please double check you have filled out all required information',
   };
 
-  if (!body.name || !body.age) {
+  if (!body.name || !body.channelLink) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
 
   let responseCode = 201;
-  if (users[body.name]) {
+  if (streamers[body.name]) {
     responseCode = 204;
   } else {
-    users[body.name] = {};
-    users[body.name].name = body.name;
+    streamers[body.name] = {};
+    streamers[body.name].name = body.name;
   }
 
-  users[body.name].age = body.age;
+  streamers[body.name].channelLink = body.channelLink;
 
   if (responseCode === 201) {
     responseJSON.message = 'Created Successfully!';
@@ -67,7 +67,7 @@ const notFoundMeta = (request, response) => respondJSONMeta(request, response, 4
 module.exports = {
   getUsers,
   getUsersMeta,
-  addUser,
+  addStreamer,
   notFound,
   notFoundMeta,
 };

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Our simple HTTP server</title>
+  <title>Twitch Stream Tracker</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
@@ -18,11 +18,11 @@
         }
         
         //if the response is users
-        if(obj.users){
-            const userList = document.createElement('p');
-            const users = JSON.stringify(obj.users);
-            userList.textContent = users;
-            content.appendChild(userList);
+        if(obj.streamers){
+            const streamerList = document.createElement('p');
+            const streamers = JSON.stringify(obj.streamers);
+            streamerList.textContent = streamers;
+            content.appendChild(streamerList);
         }
     };
 
@@ -84,7 +84,7 @@
         const nameMethod = nameForm.getAttribute('method');
         
         const nameField = nameForm.querySelector('#nameField');
-        const ageField = nameForm.querySelector('#ageField');
+        const linkField = nameForm.querySelector('#linkField');
         
         const xhr = new XMLHttpRequest();
         xhr.open(nameMethod, nameAction);
@@ -94,21 +94,21 @@
         
         xhr.onload = () => handleResponse(xhr, true);
         
-        const formData = `name=${nameField.value}&age=${ageField.value}`;
+        const formData = `name=${nameField.value}&channelLink=${linkField.value}`;
         xhr.send(formData);
         
         return false; //Prevent bubbling
     };
 
     const init = () => {
-        const nameForm = document.querySelector('#nameForm');
+        const streamerForm = document.querySelector('#streamerForm');
         const userForm = document.querySelector('#userForm');
 
-        const addUser = (e) => sendPost(e, nameForm);
-        const getUsers = (e) => sendGetAndHead(e, userForm);
+        const addStreamer = (e) => sendPost(e, streamerForm);
+        const getStreamers = (e) => sendGetAndHead(e, userForm);
         
-        nameForm.addEventListener('submit', addUser);
-        userForm.addEventListener('submit', getUsers);
+        streamerForm.addEventListener('submit', addStreamer);
+        userForm.addEventListener('submit', getStreamers);
     };
 
     window.onload = init;
@@ -117,23 +117,33 @@
 <body>
   <section id="top">
     <h3>POST Status Code Tests</h3>
-    <form id="nameForm" action="/addUser" method="post">
-      <label for="name">Name: </label>
+    <form id="streamerForm" action="/addStreamer" method="post">
+        
+      <label for="name">Channel or Streamer Name: </label>
       <input id="nameField" type="text" name="name" />
-      <label for="age">Age: </label>
-      <input id="ageField" type="number" name="age" min="0" max="100" step="1"/>
-      <input type="submit" value="Add User" />
+        
+        <br />
+        
+      <label for="channelLink">Link to Channel: </label>
+      <input id="linkField" type="text" name="channelLink"/>
+        
+        <br />
+        
+      <input type="submit" value="Add Streamer" />
     </form>
-    <form id="userForm" action="/getUsers" method="get">
+      
+      <br /><br />
+      
+    <form id="userForm" action="/getStreamers" method="get">
       <select id='urlField'>
-        <option value='/getUsers'>/getUsers</option>
+        <option value='/getStreamers'>/getStreamers</option>
         <option value='/notReal'>/notReal</option>
       </select>
       <select id="methodSelect">
         <option value="get">GET</option>
         <option value="head">HEAD</option>
       </select>
-      <input type="submit" value="Get User" />
+      <input type="submit" value="Get Streamer" />
     </form>
   </section>
   <section id="content">

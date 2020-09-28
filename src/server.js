@@ -10,17 +10,17 @@ const urlStruct = {
   GET: {
     '/': htmlHandler.getIndex,
     '/style.css': htmlHandler.getCSS,
-    '/getUsers': jsonHandler.getUsers,
+    '/getStreamers': jsonHandler.getUsers,
     notFound: jsonHandler.notFound,
   },
   HEAD: {
-    '/getUsers': jsonHandler.getUsersMeta,
+    '/getStreamers': jsonHandler.getUsersMeta,
     notFound: jsonHandler.notFoundMeta,
   },
 };
 
 const handlePost = (request, response, parsedUrl) => {
-  if (parsedUrl.pathname === '/addUser') {
+  if (parsedUrl.pathname === '/addStreamer') {
     const body = [];
 
     request.on('error', (err) => { // Return bad request on error
@@ -37,7 +37,7 @@ const handlePost = (request, response, parsedUrl) => {
       const bodyString = Buffer.concat(body).toString();
       const bodyParams = query.parse(bodyString);
 
-      jsonHandler.addUser(request, response, bodyParams);
+      jsonHandler.addStreamer(request, response, bodyParams);
     });
   }
 };
