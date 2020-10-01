@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <title>Twitch Stream Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Oxygen&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/style.css">
+  <!--<link rel="stylesheet" type="text/css" href="style.css"> Re-add to edit CSS without server on -->
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
@@ -118,54 +120,54 @@
   </script>
 </head>
 <body>
-  <section id="form">
-    <h3>POST Status Code Tests</h3>
-    <form id="streamerForm" action="/addStreamer" method="post">
-        <label for="name">Channel or Streamer Name: </label>
-        <input id="nameField" type="text" name="name" />
-
-        <br />
-
-        <label for="channelLink">Link to Channel: </label>
-        <input id="linkField" type="text" name="channelLink"
-             placeholder="https://www.twitch.tv/channelName" />
-
-        <br />
-
-        <label for="dotw">Days of the Week They Stream: </label>
-        <input id="dotwField" type="text" name="dotw"
-               placeholder="Monday, Wednesday, Friday" />
-        
-        <br />
-        
-        <label for="time">Time the Stream Starts: </label>
-        <input id="timeField" type="time" name="time" />
-    
-        <br />
-
-        <input type="submit" value="Add Streamer" />
-    </form>
-      <br /><br />
-    <form id="userForm" action="/getStreamers" method="get">
-        <select id='urlField'>
-            <option value='/getStreamers'>/getStreamers</option>
-            <option value='/notReal'>/notReal</option>
-        </select>
-        
-        <select id="methodSelect">
-            <option value="get">GET</option>
-            <option value="head">HEAD</option>
-        </select>
-        
-        <input type="submit" value="Get Streamer" />
-    </form>
-  </section>
-
-    <section id="display">
-        Placeholder Text
+    <section id="heading">
+        <h3 id="title">Stream Tracker</h3>
+        <h4 id="subtitle">Never miss your favorite streams!</h4>
     </section>
-    
-  <section id="content">
-  </section>
+    <section id="container">
+        <section id="form">
+            <form id="streamerForm" action="/addStreamer" method="post">
+                <label for="name">Channel or Streamer Name: </label>
+                <input id="nameField" type="text" name="name" />
+
+                <br />
+
+                <label for="channelLink">Link to Channel: </label>
+                <input id="linkField" type="text" name="channelLink"
+                     placeholder="https://www.twitch.tv/channelName" />
+
+                <br />
+
+                <label for="dotw">Days of the Week They Stream: </label>
+                <input id="dotwField" type="text" name="dotw"
+                       placeholder="Monday, Wednesday, Friday" />
+
+                <br />
+
+                <label for="time">Time the Stream Starts: </label>
+                <input id="timeField" type="time" name="time" />
+
+                <br />
+
+                <input type="submit" value="Add Streamer" />
+            </form>
+              <br /><br />
+            <form id="userForm" action="/getStreamers" method="get">
+                <select id='urlField'>
+                    <option value='/getStreamers'>/getStreamers</option>
+                    <option value='/notReal'>/notReal</option>
+                </select>
+
+                <select id="methodSelect">
+                    <option value="get">GET</option>
+                    <option value="head">HEAD</option>
+                </select>
+                <br />
+                <input type="submit" value="Get Streamers" />
+            </form>
+        </section>
+        <section id="content">
+        </section>
+    </section>
 </body>
 </html>
