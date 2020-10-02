@@ -15,7 +15,43 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
+// const compare = (streamA, streamB) => { // Compares two stream objects
+//  // Split the DOTW strings into arrays of days of the week
+//  const dotwStringsA = streamA.dotw.trim().split(',');
+//  const dotwStringsB = streamB.dotw.trim().split(',');
+//
+//  // Turn it into an array of numbers instead
+//  const dotwNumsA = [];
+//  const dotwNumsB = [];
+//
+//  for (const day in dotwStringsA) {
+//    dotwNumsA.push(dayOfTheWeek(day));
+//  }
+//  for (const day in dotwStringsB) {
+//    dotwNumsB.push(dayOfTheWeek(day));
+//  }
+//
+//  // Sort the arrays just because
+//  dotwNumsA.sort((a, b) => a - b);
+//  dotwNumsB.sort((a, b) => a - b);
+//
+//  console.log(dotwNumsA); // Testing
+//  console.log(dotwNumsB);
+// };
+
+const getTime = () => {
+  // If not empty
+  // Get the current day of the week and time
+  const date = new Date();
+  const currentDay = date.getDay();
+  const currentTime = date.toTimeString();
+
+  console.log(`Day: ${currentDay}, Time: ${currentTime}`); // Test
+};
+
 const getUsers = (request, response) => {
+  getTime(request, response);
+
   const responseJSON = {
     streamers,
   };
