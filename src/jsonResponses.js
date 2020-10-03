@@ -39,7 +39,7 @@ const respondJSONMeta = (request, response, status) => {
 //  console.log(dotwNumsB);
 // };
 
-const getTime = () => {
+const getDayAndTime = () => {
   // If not empty
   // Get the current day of the week and time
   const date = new Date();
@@ -47,10 +47,12 @@ const getTime = () => {
   const currentTime = date.toTimeString();
 
   console.log(`Day: ${currentDay}, Time: ${currentTime}`); // Test
+
+  return date;
 };
 
 const getUsers = (request, response) => {
-  getTime(request, response);
+  getDayAndTime(request, response);
 
   const responseJSON = {
     streamers,
