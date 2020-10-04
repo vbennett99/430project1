@@ -60,10 +60,21 @@
             a.className = "streamLink";
             p.className = "streamInfo";
             
+            //Add the link
             a.appendChild(name);
             a.target = "_blank";
             a.href = `${sortedStreamers[0].channelLink}`;
-            p.textContent = `${sortedStreamers[0].date} @ ${sortedStreamers[0].time}`;
+            
+            //Add the stream info w/ 12 hr clock
+            let twelveHourTime = sortedStreamers[0].time;
+            let hoursMinutes = twelveHourTime.split(':');
+            if(hoursMinutes[0] > 12){
+                let hours = hoursMinutes[0]%12;
+                twelveHourTime = `${hours}:${hoursMinutes[1]}`;
+                p.textContent = `${sortedStreamers[0].date} @ ${twelveHourTime} PM`;
+            } else {
+                p.textContent = `${sortedStreamers[0].date} @ ${sortedStreamers[0].time} AM`;   
+            }
             next.appendChild(a);
             next.appendChild(p);
             
@@ -77,10 +88,21 @@
                 
                 const rule = document.createElement('hr');
                 
+                //Add the link
                 link.appendChild(title);
                 link.target = "_blank";
                 link.href = `${sortedStreamers[i].channelLink}`;
-                info.textContent = `${sortedStreamers[i].date} @ ${sortedStreamers[i].time}`;
+                
+                //Add the stream info w/ 12 hr clock
+                twelveHourTime = sortedStreamers[i].time;
+                hoursMinutes = twelveHourTime.split(':');
+                if(hoursMinutes[0] > 12){
+                    let hours = hoursMinutes[0]%12;
+                    twelveHourTime = `${hours}:${hoursMinutes[1]}`;
+                    info.textContent = `${sortedStreamers[i].date} @ ${twelveHourTime} PM`;
+                } else {
+                    info.textContent = `${sortedStreamers[i].date} @ ${sortedStreamers[i].time} AM`;   
+                }
                 
                 upcoming.appendChild(link);
                 upcoming.appendChild(info);
