@@ -16,27 +16,27 @@ const respondJSONMeta = (request, response, status) => {
 };
 
 // const compare = (streamA, streamB) => { // Compares two stream objects
-//  // Split the DOTW strings into arrays of days of the week
-//  const dotwStringsA = streamA.dotw.trim().split(',');
-//  const dotwStringsB = streamB.dotw.trim().split(',');
+//  // Split the date strings into arrays of days of the week
+//  const dateStringsA = streamA.date.trim().split(',');
+//  const dateStringsB = streamB.date.trim().split(',');
 //
 //  // Turn it into an array of numbers instead
-//  const dotwNumsA = [];
-//  const dotwNumsB = [];
+//  const dateNumsA = [];
+//  const dateNumsB = [];
 //
-//  for (const day in dotwStringsA) {
-//    dotwNumsA.push(dayOfTheWeek(day));
+//  for (const day in dateStringsA) {
+//    dateNumsA.push(dayOfTheWeek(day));
 //  }
-//  for (const day in dotwStringsB) {
-//    dotwNumsB.push(dayOfTheWeek(day));
+//  for (const day in dateStringsB) {
+//    dateNumsB.push(dayOfTheWeek(day));
 //  }
 //
 //  // Sort the arrays just because
-//  dotwNumsA.sort((a, b) => a - b);
-//  dotwNumsB.sort((a, b) => a - b);
+//  dateNumsA.sort((a, b) => a - b);
+//  dateNumsB.sort((a, b) => a - b);
 //
-//  console.log(dotwNumsA); // Testing
-//  console.log(dotwNumsB);
+//  console.log(dateNumsA); // Testing
+//  console.log(dateNumsB);
 // };
 
 const getDayAndTime = () => {
@@ -68,7 +68,7 @@ const addStreamer = (request, response, body) => {
     message: 'All fields are required, please double check you have filled out all required information',
   };
 
-  if (!body.name || !body.channelLink || !body.dotw || !body.time) {
+  if (!body.name || !body.channelLink || !body.date || !body.time) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
@@ -82,7 +82,7 @@ const addStreamer = (request, response, body) => {
   }
 
   streamers[body.name].channelLink = body.channelLink;
-  streamers[body.name].dotw = body.dotw;
+  streamers[body.name].date = body.date;
   streamers[body.name].time = body.time;
 
   if (responseCode === 201) {

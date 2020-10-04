@@ -4,7 +4,7 @@
   <title>Twitch Stream Tracker</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Oxygen&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/style.css">
-  <!--<link rel="stylesheet" type="text/css" href="style.css"> Re-add to edit CSS without server on -->
+  <!--<link rel="stylesheet" type="text/css" href="style.css">-->
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
@@ -87,7 +87,7 @@
         
         const nameField = nameForm.querySelector('#nameField');
         const linkField = nameForm.querySelector('#linkField');
-        const dotwField = nameForm.querySelector('#dotwField');
+        const dateField = nameForm.querySelector('#dateField');
         const timeField = nameForm.querySelector('#timeField');
         
         const xhr = new XMLHttpRequest();
@@ -99,7 +99,7 @@
         xhr.onload = () => handleResponse(xhr, true);
         
         const formData = `name=${nameField.value}&channelLink=${linkField.value}
-                        &dotw=${dotwField.value}&time=${timeField.value}`;
+                        &date=${dateField.value}&time=${timeField.value}`;
         xhr.send(formData);
         
         return false; //Prevent bubbling
@@ -138,9 +138,8 @@
 
                 <br />
 
-                <label for="dotw">Days of the Week They Stream: </label>
-                <input id="dotwField" type="text" name="dotw"
-                       placeholder="Monday, Wednesday, Friday" />
+                <label for="date">Date of Next Stream: </label>
+                <input id="dateField" type="date" name="date" />
 
                 <br />
 
@@ -167,6 +166,15 @@
             </form>
         </section>
         <section id="content">
+            <h1 class="contentTitle">Next Stream</h1>
+            <section id="next">
+                <!-- h1 class="streamLink"
+                     p class="streamInfo"-->
+            </section>
+            <br />
+            <h1 class="contentTitle">Upcoming</h1>
+            <section id="upcoming">
+            </section>
         </section>
     </section>
 </body>
