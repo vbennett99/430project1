@@ -15,45 +15,7 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-// const compare = (streamA, streamB) => { // Compares two stream objects
-//  // Split the date strings into arrays of days of the week
-//  const dateStringsA = streamA.date.trim().split(',');
-//  const dateStringsB = streamB.date.trim().split(',');
-//
-//  // Turn it into an array of numbers instead
-//  const dateNumsA = [];
-//  const dateNumsB = [];
-//
-//  for (const day in dateStringsA) {
-//    dateNumsA.push(dayOfTheWeek(day));
-//  }
-//  for (const day in dateStringsB) {
-//    dateNumsB.push(dayOfTheWeek(day));
-//  }
-//
-//  // Sort the arrays just because
-//  dateNumsA.sort((a, b) => a - b);
-//  dateNumsB.sort((a, b) => a - b);
-//
-//  console.log(dateNumsA); // Testing
-//  console.log(dateNumsB);
-// };
-
-const getDayAndTime = () => {
-  // If not empty
-  // Get the current day of the week and time
-  const date = new Date();
-  const currentDay = date.getDay();
-  const currentTime = date.toTimeString();
-
-  console.log(`Day: ${currentDay}, Time: ${currentTime}`); // Test
-
-  return date;
-};
-
 const getUsers = (request, response) => {
-  getDayAndTime(request, response);
-
   const responseJSON = {
     streamers,
   };
@@ -80,8 +42,12 @@ const addStreamer = (request, response, body) => {
     streamers[body.name] = {};
     streamers[body.name].name = body.name;
   }
+  // Removing any extra whitespace or enters
+  let link = body.channelLink;
+  link = link.trim();
+  link = link.replace(/\r\n/g, '');
 
-  streamers[body.name].channelLink = body.channelLink;
+  streamers[body.name].channelLink = link;
   streamers[body.name].date = body.date;
   streamers[body.name].time = body.time;
 

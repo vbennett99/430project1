@@ -67,6 +67,7 @@ input[type=submit] {
 input[type=submit]:hover{
     background-color: #77569c;
     color: white;
+    width: 40%;
 }
 
 /*-----BODY=----*/
