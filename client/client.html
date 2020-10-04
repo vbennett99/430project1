@@ -38,6 +38,20 @@
             });
             
             //Sort the streams with the same date based on time
+            for(let i = 1; i < sortedStreamers.length; i++){
+                //If the object before the current object has the same date
+                if(sortedStreamers[i].date === sortedStreamers[i-1].date){
+                    //If they're not the same exact time
+                    if(sortedStreamers[i].time !== sortedStreamers[i-1].time){
+                        //if the current object's time is less than the other's time, swap them
+                        if(sortedStreamers[i].time < sortedStreamers[i-1].time){
+                            let temp = sortedStreamers[i-1];
+                            sortedStreamers[i-1] = sortedStreamers[i];
+                            sortedStreamers[i] = temp;
+                        }
+                    }
+                }
+            }
             
             //Display the earliest stream, which is at sortedStream[0]
             const a = document.createElement('a');
